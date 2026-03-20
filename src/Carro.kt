@@ -1,10 +1,19 @@
-class Carro {
-    var velocidade:Int = 0
-    var aceleracao:Int = 0
-    var freio:Int = 0
-    var tanque:Int = 0
-    var consumo:Int = 0
-    var resistencia:Int = 0
+class Carro (
+    val velocidade:Double,
+    val aceleracao:Double,
+    val freio:Int,
+    val tanque:Int,
+    val consumo:Int,
+    val resistencia:Int
+)
+{
+    fun calcularConsumo() : Double{
+        return aceleracao * (consumo + velocidade)
+    }
+
+    fun calcularAceleracao(pista: Pista) : Double{
+        var distanciaPercorrida = pista.voltasPercorridas
+    }
 }
 
 //Cria uma classe Carro (velocidade, aceleração, freio, tanque, consumo, resistência)

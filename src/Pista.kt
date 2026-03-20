@@ -1,10 +1,9 @@
-class Pista {
-    var listaCarros: MutableList<Carro> = mutableListOf()
-    var posicoes:Int = 0
-    var voltas:Int = 0
-    var clima:String = ""
+class Pista(
+    var listaCarros: List<Carro>,
+    var posicoes:Int,
+    var voltas:Int,
+    var clima:String,
+    var voltasPercorridas:Int
+) {
+
 }
-
-
-//Crie um classe Pista (lista de carros, posições, voltas, clima)
-//A classe Pista deve uma função que define as posições dos carros de acordo com os atributos dos Pilotos e Carros.
