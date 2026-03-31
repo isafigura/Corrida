@@ -18,10 +18,16 @@ class Pista(
         
         println("==== FIM DA CORRIDA ====")
         println("O GRANDE VENCEDOR É: ${ranking.first().modelo} com o piloto ${ranking.first().piloto.nome}!")
+        println("\n==== RELATÓRIO DE CONSUMO ====")
+        mostrarConsumoFinal()
     }
 
     private fun simularVolta() {
         ranking = listaCarros.sortedByDescending { it.calcularDesempenho() + (0..10).random() }.toMutableList()
+
+        listaCarros.forEach { carro ->
+            carro.tanqueAtual -= carro.calcularConsumo()
+        }
     }
 
     fun exibirPlacar() {
@@ -31,7 +37,16 @@ class Pista(
         }
         
         ranking.forEachIndexed { index, carro ->
-            println("${index + 1}º Lugar: ${carro.modelo} - Piloto: ${carro.piloto.nome}")
+            println("${index + 1}º Lugar: ${carro.modelo} - Combustível: ${"%.1f".format(carro.tanqueAtual)}L")
+        }
+    }
+
+    private fun mostrarConsumoFinal() {
+        val rankingConsumo = listaCarros.sortedByDescending { it.tanqueAtual }
+        rankingConsumo.forEachIndexed { index, carro ->
+            val totalConsumido = carro.tanque - carro.tanqueAtual
+            println("${index + 1}º Mais Econômico: ${carro.modelo} - Resíduo: ${"%.1f".format(carro.tanqueAtual)}L (Total Gasto: ${"%.1f".format(totalConsumido)}L)")
         }
     }
 }
+

@@ -9,11 +9,13 @@ class Carro (
     val piloto: Piloto
 )
 {
+    var tanqueAtual: Double = tanque.toDouble()
+
     fun calcularDesempenho() : Double {
-        return (velocidade * 0.4) + (aceleracao * 0.3) + (piloto.habilidade.recarga * 0.2) + (resistencia * 0.1)
+        return (velocidade * 0.4) + (aceleracao * 0.3) + (piloto.habilidade.recarga * 0.1) + (resistencia * 0.1) - (freio * 0.1)
     }
 
-    fun calcularConsumo() : Double {
-        return aceleracao * (consumo + velocidade)
+    fun calcularConsumo(): Double {
+        return (velocidade * 0.05) + (aceleracao * 0.1) + (consumo * 0.2)
     }
 }
